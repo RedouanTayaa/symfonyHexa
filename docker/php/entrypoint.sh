@@ -4,7 +4,7 @@
 composer install
 
 # Exécution des migrations Symfony
-#php bin/console doctrine:migrations:migrate --no-interaction
+php bin/console doctrine:migrations:migrate --no-interaction
 
 # Lancement du serveur PHP-FPM
 php-fpm
