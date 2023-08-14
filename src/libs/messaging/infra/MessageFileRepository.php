@@ -31,7 +31,6 @@ class MessageFileRepository implements MessageRepository
 
     public function getById(string $id): Message|null
     {
-        // TODO: Implement getById() method.
         $messages = $this->getAllMessages();
 
         if (array_key_exists($id, $messages)) {
