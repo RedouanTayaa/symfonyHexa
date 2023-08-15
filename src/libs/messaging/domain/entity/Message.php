@@ -2,9 +2,11 @@
 
 namespace App\libs\messaging\domain\entity;
 
+use App\libs\messaging\domain\types\MessageText;
+
 class Message implements \JsonSerializable
 {
-    private string $id;
+    private ?int $id;
     private string $author;
     private string $text;
     private \DateTime $publishedAt;
@@ -15,18 +17,18 @@ class Message implements \JsonSerializable
      * @param string $text
      * @param \DateTime $publishedAt
      */
-    public function __construct(string $id, string $author, string $text, \DateTime $publishedAt)
+    public function __construct(int|null $id, string $author, string $text, \DateTime $publishedAt)
     {
         $this->id = $id;
         $this->author = $author;
-        $this->text = $text;
+        $this->text = MessageText::of($text);
         $this->publishedAt = $publishedAt;
     }
 
     /**
-     * @return string
+     * @return ?int
      */
-    public function getId(): string
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -62,7 +64,7 @@ class Message implements \JsonSerializable
 
     public static function fromData($data): Message
     {
-        return new Message($data['id'], $data['author'], $data['text'], $data['publishedAt']);
+        return new Message($data['id'] ?? null, $data['author'], $data['text'], $data['publishedAt']);
     }
 
     public function jsonSerialize(): mixed

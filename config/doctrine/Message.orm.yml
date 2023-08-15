@@ -1,0 +1,21 @@
+App\libs\messaging\domain\entity\Message:
+  type: entity
+  table: messages
+  repositoryClass: App\libs\messaging\infra\MessageDoctrineRepository
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+      nullable: false
+  fields:
+    author:
+      type: string
+      length: 255
+      nullable: false
+    text:
+      type: text
+      nullable: false
+    publishedAt:
+      type: datetime
+      nullable: false
